@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Shawn Rogoff</title>
+    <title>Rewind: A Coding Project By Shawn Rogoff</title>
     <link rel="shortcut icon" type="image/jpg" href="/img/ShawnRogoffFavicon.ico"/>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -20,13 +20,17 @@
     <link href="/css/prism.css" rel="stylesheet">
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column h-100">
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand"><img src="/img/ShawnRogoffMarkLight.png" class="d-inline-block align-text-top" width="30" height="24"> App Name</a>
+            <a class="navbar-brand logoFont"><img src="/img/ShawnRogoffMarkLight.png" class="d-inline-block align-text-top" width="30" height="24"> Rewind</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -43,11 +47,11 @@
                         <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/shawnrogoff/Rewind">Git Repo</a>
                         <!-- put github link in the above href -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="#">About</a>
+                        <a class="nav-link" target="_blank" href="https://shawnrogoffportfolio.netlify.app/">About</a>
                         <!-- put portfolio link in the above href -->
                     </li>
                 </ul>
@@ -58,24 +62,94 @@
     <!-- Main Section -->
     <main class="flex-shrink-0">
         <div class="container px-5 py-5 mt-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for APP NAME.</h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for Rewind.</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <!-- Code Side -->
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
                         <!-- Put valid javascript here -->
-                        // Call Hello World
-                        function HelloWorld(){
-                            alert("Hello World!");
+                        // Get the string value from page
+                        // Controller Function
+                        function getValue(){
+                            // ensures the alert is invisible when the page starts
+                            document.getElementById("alert").classList.add("invisible");
+
+                            // set variable to the string users put into input field
+                            let userString = document.getElementById("userString").value;
+
+                            // pass string into reverseString function
+                            let reversedString = reverseString(userString);
+
+                            // pass reversed string to displayString function
+                            displayString(reversedString);
+                        }
+
+                        // Reverse the string
+                        // Logic Function
+                        function reverseString(userString){
+                            let reversedString = [];
+
+                            // use a for loop to reverse the string
+                            for (let index = userString.length - 1; index >= 0; index--) {
+                                reversedString += userString[index];
+                            }
+
+                            // return the reversedString array to getValue function
+                            return reversedString;
+                        }
+
+                        // Display the reversed string to page
+                        // View Function
+                        function displayString(reversedString){
+
+                            // write the message to the page
+
+                            document.getElementById("message").innerHTML = `"The reversed string is: ${reversedString}"`;
+
+                            // show the alert box
+
+                            document.getElementById("alert").classList.remove("invisible");
                         }
                     </code>
                     </pre>
                 </div>
                 <!-- Description Side -->
                 <div class="col-lg-4">
-                    <p>The Code is structed in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hellow World is a function that displays an alert with a message of "Hello World!"</p>
+                    <p  class="pt-1">Here are some brief explanations of the functions used in this project.</p>
+                    <h5>getValue()</h5>
+                    <p>
+                        &emsp;The <i>getValues( )</i> function is our starting point for the application. The first thing our function 
+                        does is to make sure our results element is hidden by adding the <i>invisible</i> class to the html 
+                        element if it is not already there. Next, we take in the value from our input on the webpage, and store 
+                        it inside an appropriately named variable. Next, we create a new variable called <i>reversedString</i>, 
+                        and set it equal to the value returned by our <i>reverseString( )</i> function when we pass the <i>userString</i> 
+                        variable in as a parameter.
+                    </p>
+                    <p>
+                        &emsp;Once a value is returned from the <i>reverseString( )</i> function, the <i>reversedString</i> variable is 
+                        passed into our <i>displayString( )</i> function as a parameter to complete the task of reversing a string.
+                    </p>
+                    <h5>reverseString()</h5>
+                    <p>
+                        &emsp;The <i>reverseString( )</i> function receives the <i>userString</i> variable as a parameter. First, we 
+                        create an empty array variable called <i>reversedString</i> to store the reversed string we are about to create. 
+                        Next, we use a specially designed for loop to reverse the string. The logic here can be tricky to understand at first. 
+                        We start the loop with an index equal to the length of the userString array minus 1. The loop will run over the <i>userString</i> 
+                        array, and set the first element of the <i>reversedString</i> array equal to the value at the current index location of 
+                        the <i>userString</i> variable. This is where the reversing takes place. After that loop is completed, the index is 
+                        decrimented (made smaller) by 1, and the loop runs again until the index is less than 0. The completed <i>reversedString</i> 
+                        array is then returned to the <i>getValues( )</i> function to continue with the rest of the function.
+                    </p>
+                    <p>
+                        &emsp;For example, if we enter the word 'read,' the first loop through will set the first element of the <i>reversedString</i> 
+                        array to 'd'. The next loop sets the second element of the <i>reversedString</i> array to 'a', and so on.
+                    </p>
+                    <h5>displayString()</h5>
+                    <p>
+                        &emsp;The <i>displayString( )</i> function receives the <i>reversedString</i> array, and sets the inner html element of our results 
+                        element to display a message containing the reversed string. The last step is to remove the <i>invisible</i> class from 
+                        our result element to show the result to the user on-screan.
+                    </p>
                 </div>
             </div>
         </div>
